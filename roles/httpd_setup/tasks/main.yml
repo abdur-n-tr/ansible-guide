@@ -1,0 +1,20 @@
+---
+# tasks file for httpd_setup
+- name: Install Apache2
+  become: true
+  apt:
+    name: "{{ apache2_package_name }}"
+    state: present
+
+- name: Place custom HTML File
+  become: true
+  copy:
+    src: index.html
+    dest: "{{ html_file_path }}"
+
+- name: Start the service
+  become: true
+  service:
+    name: "{{ apache2_package_name }}"
+    state: started
+    enabled: yes

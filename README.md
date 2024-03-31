@@ -71,9 +71,14 @@ systemctl status nginx.service    (verify that nginx servic is running)
 
 ```bash
 ansible-playbook install_nginx_pb.yaml --list-tags
-ansible-playbook i <inventory> <playbook-name.yaml> -t <tag-name>
-ansible-playbook i <inventory> <playbook-name.yaml> --skip-tags <tag-name>    (only skip the specified tags)
+ansible-playbook -i <inventory> <playbook-name.yaml> -t <tag-name>
+ansible-playbook -i <inventory> <playbook-name.yaml> --skip-tags <tag-name>    (only skip the specified tags)
 ```
 
+- To initiate a role in ansible, configure the tasks, vars, handlers in role and then execute the following commands to run the playbook,
 
+```bash
+ansible-galaxy init <role-name>
+ansible-playbook -i <inventory> <playbook-name.yaml>
+```
 

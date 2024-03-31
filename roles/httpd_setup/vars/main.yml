@@ -1,0 +1,5 @@
+---
+# vars file for httpd_setup
+
+apache2_package_name: apache2
+html_file_path: /var/www/html/index.html

@@ -1,0 +1,2 @@
+[web_servers]
+ec2_instance1 ansible_host=34.205.77.241 ansible_user=ubuntu ansible_ssh_private_key_file=/home/arehman/.ssh/id_rsa
