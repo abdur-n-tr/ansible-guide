@@ -1,0 +1,9 @@
+- name: Run a script
+  hosts: web_servers
+
+  tasks:
+    - name: Run script
+      shell: ./test.sh >> test.log
+      args:
+        chdir: /tmp/script/
+        creates: test.log

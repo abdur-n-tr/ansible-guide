@@ -1,15 +1,51 @@
 - name: Install and Start nginx
   hosts: web_servers
   become: true
+  vars:
+    app: nginx
 
   tasks:
-    - name: Install nginx
-      apt:
-        name: nginx
-        state: present
+  - name: Install nginx
+    apt:
+      name: "{{ app }}"
+      state: present
+    tags: i-nginx
+    when: ansible_os_family == "Debian"
 
-    - name: Start nginx
-      service:
-        name: nginx
-        state: started
-        enabled: true
+  - name: Start nginx
+    service:
+      name: "{{ app }}"
+      state: started
+      enabled: false
+    tags: s-nginx
+    register: nginx_service_result
+    notify:
+      - Reload Nginx
+   
+  - name: Copy Files
+    copy:
+      src: /home/arehman/projects/ansible-guide/test_file
+      dest: /tmp
+      mode: 0777
+    tags: cp-file
+
+  - name: Creating a File
+    file:
+      path: /tmp/new_file.txt
+      state: touch
+      mode: u=rwx,g=rw,o=r
+    tags: cr-file
+
+  - name: Creating a Directory
+    file:
+      path: /tmp/myfolder
+      state: directory
+    tags: cr-dir
+
+  handlers:
+  - name: Reload Nginx
+    service:
+      name: "{{ app }}"
+      state: reloaded
+    tags: load-nginx
+    when: nginx_service_result.enabled

@@ -1,3 +1,2 @@
 [web_servers]
-ec2_instance1 ansible_host=54.166.116.187 ansible_user=ubuntu ansible_ssh_private_key_file=/home/arehman/.ssh/id_rsa
-ec2_instance2 ansible_host=3.86.217.60 ansible_user=ubuntu ansible_ssh_private_key_file=/home/arehman/.ssh/ec2-pub-prv-key.pem
+ec2_instance1 ansible_host=34.205.77.241 ansible_user=ubuntu ansible_ssh_private_key_file=/home/arehman/.ssh/id_rsa
